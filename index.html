@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valtrau – Cooperativa Valenciana de Transportes</title>
+  <meta name="description" content="Operador logístico especializado en transporte de mercancías a granel, contenedores, ADR y paletizadas desde el Puerto de Valencia. Más de 30 años de experiencia." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Poppins', 'sans-serif'],
+            body:    ['Open Sans', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              50:  '#f0f4ff',
+              100: '#dce6fb',
+              200: '#b9cdf7',
+              500: '#2f61d9',
+              600: '#1e49c0',
+              700: '#1B3479',
+              800: '#162c65',
+              900: '#0F1E4A',
+            },
+            gold: {
+              400: '#f9c442',
+              500: '#E8A020',
+              600: '#c47f10',
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    *    { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', sans-serif; color: #1e293b; background: #fff; }
+    h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; }
+
+    /* ── Navbar ── */
+    #navbar { transition: background .3s, box-shadow .3s, padding .3s; }
+    #navbar.scrolled {
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0,0,0,.10);
+    }
+    #navbar.scrolled .nav-link   { color: #1e293b; }
+    #navbar.scrolled .nav-link:hover { color: #1B3479; }
+    #navbar.scrolled .logo-white { filter: none; }
+
+    /* ── Dropdowns ── */
+    .dropdown-menu {
+      display: none; position: absolute; top: calc(100% + 8px); left: 50%;
+      transform: translateX(-50%); min-width: 220px;
+      background: #fff; border: 1px solid #e2e8f0;
+      border-radius: 14px; box-shadow: 0 12px 32px rgba(0,0,0,.12);
+      padding: 6px; z-index: 100;
+    }
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-menu a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 14px; border-radius: 10px;
+      font-size: .82rem; font-weight: 500; color: #334155;
+      transition: background .15s, color .15s;
+      text-decoration: none;
+    }
+    .dropdown-menu a:hover { background: #f0f4ff; color: #1B3479; }
+    .dropdown-chevron { transition: transform .2s; }
+    .dropdown:hover .dropdown-chevron { transform: rotate(180deg); }
+
+    /* ── Truck animation ── */
+    @keyframes truckDrive {
+      0%   { transform: translateX(110vw); }
+      100% { transform: translateX(-420px); }
+    }
+    @keyframes wheelSpin {
+      from { transform-box: fill-box; transform-origin: center; transform: rotate(0deg); }
+      to   { transform-box: fill-box; transform-origin: center; transform: rotate(360deg); }
+    }
+    @keyframes exhaust {
+      0%   { opacity: .7; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-18px) scale(2); }
+    }
+    .truck-wrap {
+      position: absolute; bottom: 28px; left: 0;
+      animation: truckDrive 14s linear infinite;
+      pointer-events: none;
+    }
+    .wheel-anim { animation: wheelSpin .6s linear infinite; }
+    .smoke1 { animation: exhaust .8s ease-out infinite; }
+    .smoke2 { animation: exhaust .8s ease-out .3s infinite; }
+    .smoke3 { animation: exhaust .8s ease-out .6s infinite; }
+
+    /* Road stripe animation */
+    @keyframes stripeMove {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-120px); }
+    }
+    .road-stripes { animation: stripeMove .6s linear infinite; }
+
+    /* ── Fade-up entrance ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up          { animation: fadeUp .6s ease both; }
+    .delay-1          { animation-delay: .1s; }
+    .delay-2          { animation-delay: .25s; }
+    .delay-3          { animation-delay: .4s; }
+
+    /* ── Service card ── */
+    .svc-card { transition: transform .25s, box-shadow .25s; }
+    .svc-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.15); }
+
+    /* ── Mobile menu ── */
+    #mobile-menu { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .3s, opacity .3s; }
+    #mobile-menu.open { max-height: 500px; opacity: 1; }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-3 px-4 md:px-8 bg-transparent">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+    <a href="#inicio" aria-label="Valtrau inicio" class="flex-shrink-0 cursor-pointer">
+      <img src="logoValtrau.png" alt="Valtrau Cooperativa Valenciana" class="logo-white h-11 w-auto" style="filter: brightness(0) invert(1);" />
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden md:flex items-center gap-1 text-sm font-medium text-white">
+
+      <li>
+        <a href="#inicio" class="nav-link px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors duration-200 cursor-pointer">Inicio</a>
+      </li>
+
+      <!-- Servicios dropdown -->
+      <li class="dropdown relative">
+        <a href="#servicios" class="nav-link flex items-center gap-1 px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors duration-200 cursor-pointer">
+          Servicios
+          <svg class="dropdown-chevron w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+        <div class="dropdown-menu" role="menu">
+          <a href="graneles.html" role="menuitem">
+            <svg class="w-4 h-4 text-gold-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            Transporte de graneles
+          </a>
+          <a href="paletizadas.html" role="menuitem">
+            <svg class="w-4 h-4 text-gold-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+            Mercancías paletizadas
+          </a>
+          <a href="contenedores.html" role="menuitem">
+            <svg class="w-4 h-4 text-gold-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            Contenedores
+          </a>
+          <a href="adr.html" role="menuitem">
+            <svg class="w-4 h-4 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            ADR – Mercancías peligrosas
+          </a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#empresa" class="nav-link px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors duration-200 cursor-pointer">Empresa</a>
+      </li>
+
+      <!-- Contactar dropdown -->
+      <li class="dropdown relative">
+        <a href="#contacto" class="nav-link flex items-center gap-1 px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors duration-200 cursor-pointer">
+          Contactar
+          <svg class="dropdown-chevron w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+        <div class="dropdown-menu" role="menu">
+          <a href="#contacto" role="menuitem">
+            <svg class="w-4 h-4 text-navy-700 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            Contacto
+          </a>
+          <a href="#bolsa" role="menuitem">
+            <svg class="w-4 h-4 text-navy-700 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            Bolsa de Trabajo
+          </a>
+          <a href="#mejorar" role="menuitem">
+            <svg class="w-4 h-4 text-navy-700 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+            Ayúdanos a Mejorar
+          </a>
+        </div>
+      </li>
+
+      <li class="ml-2">
+        <a href="#contacto"
+           class="inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-white font-semibold px-5 py-2.5 rounded-full transition-colors duration-200 cursor-pointer shadow-lg shadow-gold-500/30 text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
+          Solicitar servicio
+        </a>
+      </li>
+    </ul>
+
+    <!-- Hamburger -->
+    <button id="menu-btn" class="md:hidden p-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gold-400" aria-label="Abrir menú" aria-expanded="false">
+      <svg id="icon-open"  class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden mt-2 rounded-2xl bg-white/97 backdrop-blur-md shadow-xl border border-slate-100">
+    <ul class="flex flex-col py-3 px-3 text-slate-700 font-medium text-sm gap-0.5">
+      <li><a href="#inicio"    class="block py-2.5 px-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer">Inicio</a></li>
+      <li>
+        <div class="px-3 pt-2 pb-1 text-xs font-semibold text-slate-400 uppercase tracking-wider">Servicios</div>
+        <a href="graneles.html"     class="block py-2 px-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer pl-5">→ Transporte de graneles</a>
+        <a href="paletizadas.html"     class="block py-2 px-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer pl-5">→ Mercancías paletizadas</a>
+        <a href="contenedores.html" class="block py-2 px-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer pl-5">→ Contenedores</a>
+        <a href="adr.html"        class="block py-2 px-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer pl-5">→ ADR – Mercancías peligrosas</a>
+      </li>
+      <li><a href="#empresa"  class="block py-2.5 px-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer">Empresa</a></li>
+      <li>
+        <div class="px-3 pt-2 pb-1 text-xs font-semibold text-slate-400 uppercase tracking-wider">Contactar</div>
+        <a href="#contacto" class="block py-2 px-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer pl-5">→ Contacto</a>
+        <a href="#bolsa"    class="block py-2 px-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer pl-5">→ Bolsa de Trabajo</a>
+        <a href="#mejorar"  class="block py-2 px-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer pl-5">→ Ayúdanos a Mejorar</a>
+      </li>
+      <li class="pt-2 px-0">
+        <a href="#contacto" class="block text-center bg-gold-500 hover:bg-gold-600 text-white font-semibold py-2.5 px-3 rounded-xl transition-colors cursor-pointer">Solicitar servicio</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════ -->
+<section id="inicio" class="relative min-h-screen flex flex-col justify-center overflow-hidden"
+  style="background: linear-gradient(160deg, #0F1E4A 0%, #1B3479 55%, #1e49c0 100%);">
+
+  <!-- Subtle dot pattern overlay -->
+  <div class="absolute inset-0 opacity-[0.04]" aria-hidden="true"
+    style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 28px 28px;"></div>
+
+  <!-- Main content -->
+  <div class="relative z-10 max-w-7xl mx-auto w-full px-4 md:px-8 pt-28 pb-44 grid lg:grid-cols-2 gap-12 items-center">
+
+    <!-- Left: copy -->
+    <div class="text-white fade-up">
+      <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-white/80 mb-6">
+        <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
+        Cooperativa Valenciana · Puerto de Valencia
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6">
+        Transportamos<br />tu carga con<br /><span class="text-gold-400">garantía total</span>
+      </h1>
+      <p class="text-white/70 text-lg md:text-xl leading-relaxed mb-8 max-w-lg">
+        Más de 30 años de experiencia en el Puerto de Valencia. Especialistas en granel, contenedores, ADR y mercancías paletizadas con flota propia de 65 camiones basculantes.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#contacto"
+           class="inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-white font-semibold px-7 py-3.5 rounded-full transition-colors duration-200 cursor-pointer shadow-xl shadow-gold-500/30 text-base">
+          Solicitar presupuesto
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+        <a href="#servicios"
+           class="inline-flex items-center gap-2 border border-white/30 text-white hover:bg-white/10 font-semibold px-7 py-3.5 rounded-full transition-colors duration-200 cursor-pointer text-base">
+          Ver servicios
+        </a>
+      </div>
+      <!-- Trust badges -->
+      <div class="mt-10 flex flex-wrap gap-6 text-white/60 text-sm">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          65 camiones basculantes
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Certificación ADR
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Nacional e internacional
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: stat cards -->
+    <div class="grid grid-cols-2 gap-4 fade-up delay-2">
+      <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-6 text-white hover:bg-white/15 transition-colors duration-200 cursor-default">
+        <div class="text-4xl font-bold text-gold-400 font-heading">30+</div>
+        <div class="text-white/60 text-sm mt-1">Años de experiencia</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-6 text-white hover:bg-white/15 transition-colors duration-200 cursor-default">
+        <div class="text-4xl font-bold text-gold-400 font-heading">65</div>
+        <div class="text-white/60 text-sm mt-1">Camiones basculantes</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-6 text-white hover:bg-white/15 transition-colors duration-200 cursor-default">
+        <div class="text-4xl font-bold text-gold-400 font-heading">57</div>
+        <div class="text-white/60 text-sm mt-1">Socios fundadores en 1989</div>
+      </div>
+      <div class="bg-gold-500/20 border border-gold-400/30 rounded-2xl p-6 text-white hover:bg-gold-500/30 transition-colors duration-200 cursor-default">
+        <div class="text-4xl font-bold text-gold-400 font-heading">4</div>
+        <div class="text-white/60 text-sm mt-1">Tipos de servicio especializado</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ROAD + TRUCK ANIMATION ── -->
+  <div class="absolute bottom-0 left-0 right-0" aria-hidden="true">
+
+    <!-- Road surface -->
+    <div class="h-24 w-full relative" style="background: linear-gradient(to top, #1a1a2e 0%, #1a1a2e 60%, transparent 100%);">
+
+      <!-- Road lines (animated) -->
+      <div class="absolute top-6 left-0 right-0 overflow-hidden h-3">
+        <div class="road-stripes flex gap-0" style="width: 200%;">
+          <!-- Repeat stripes -->
+          <div class="flex gap-0" style="width:50%">
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+          </div>
+          <div class="flex gap-0" style="width:50%">
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+            <div style="width:80px;height:6px;background:#E8A020;border-radius:3px;margin:0 20px;flex-shrink:0;opacity:.7"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Truck SVG -->
+      <div class="truck-wrap">
+        <svg width="380" height="80" viewBox="0 0 380 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- === TRAILER BODY === -->
+          <rect x="4" y="10" width="228" height="52" rx="4" fill="#162c65"/>
+          <rect x="8"  y="14" width="220" height="44" rx="3" fill="#1B3479"/>
+          <!-- Trailer ribs -->
+          <line x1="55"  y1="14" x2="55"  y2="58" stroke="#162c65" stroke-width="1.5"/>
+          <line x1="105" y1="14" x2="105" y2="58" stroke="#162c65" stroke-width="1.5"/>
+          <line x1="155" y1="14" x2="155" y2="58" stroke="#162c65" stroke-width="1.5"/>
+          <line x1="205" y1="14" x2="205" y2="58" stroke="#162c65" stroke-width="1.5"/>
+          <!-- VALTRAU lettering -->
+          <text x="116" y="42" text-anchor="middle" fill="white" font-size="15" font-weight="700" font-family="Arial" letter-spacing="3">VALTRAU</text>
+          <!-- Gold stripe on trailer -->
+          <rect x="8" y="56" width="220" height="4" rx="2" fill="#E8A020" opacity=".8"/>
+          <!-- Rear lights trailer -->
+          <rect x="8" y="16" width="8" height="14" rx="2" fill="#ef4444" opacity=".9"/>
+          <rect x="8" y="34" width="8" height="10" rx="2" fill="#f97316" opacity=".8"/>
+
+          <!-- === HITCH === -->
+          <rect x="232" y="50" width="18" height="8" rx="2" fill="#475569"/>
+          <rect x="236" y="46" width="10" height="8" rx="1" fill="#64748b"/>
+
+          <!-- === CAB === -->
+          <!-- Cab body -->
+          <rect x="250" y="22" width="118" height="40" rx="6" fill="#E8A020"/>
+          <!-- Cab roof / sleeper -->
+          <rect x="258" y="8"  width="88"  height="22" rx="5" fill="#c47f10"/>
+          <rect x="258" y="8"  width="88"  height="6"  rx="3" fill="#a06308" opacity=".5"/>
+          <!-- Windshield -->
+          <rect x="332" y="26" width="30" height="22" rx="4" fill="#bde0f5" opacity=".85"/>
+          <line x1="347" y1="26" x2="347" y2="48" stroke="#a8d4f5" stroke-width="1"/>
+          <!-- Door window -->
+          <rect x="275" y="26" width="38" height="18" rx="3" fill="#bde0f5" opacity=".65"/>
+          <!-- Door panel line -->
+          <line x1="315" y1="22" x2="315" y2="62" stroke="#c47f10" stroke-width="1.5"/>
+          <!-- Door handle -->
+          <rect x="304" y="44" width="8" height="3" rx="1.5" fill="#a06308"/>
+          <!-- Grille / bumper area -->
+          <rect x="355" y="40" width="18" height="22" rx="3" fill="#d97706"/>
+          <line x1="355" y1="48" x2="373" y2="48" stroke="#a06308" stroke-width="1.5"/>
+          <line x1="355" y1="54" x2="373" y2="54" stroke="#a06308" stroke-width="1.5"/>
+          <!-- Front headlight -->
+          <rect x="360" y="26" width="12" height="8" rx="2" fill="#fef3c7" opacity=".95"/>
+          <rect x="360" y="28" width="12" height="4" rx="1" fill="white" opacity=".7"/>
+          <!-- Cab stripe -->
+          <rect x="250" y="58" width="118" height="4" rx="2" fill="#c47f10"/>
+          <!-- Company badge on cab door -->
+          <circle cx="293" cy="42" r="10" fill="#162c65" opacity=".3"/>
+          <text x="293" y="45" text-anchor="middle" fill="white" font-size="6" font-weight="700" font-family="Arial">V</text>
+
+          <!-- === EXHAUST PIPE === -->
+          <rect x="346" y="0" width="6" height="14" rx="3" fill="#64748b"/>
+          <!-- Smoke puffs -->
+          <circle class="smoke1" cx="349" cy="4" r="4" fill="white" opacity=".4"/>
+          <circle class="smoke2" cx="352" cy="2" r="3" fill="white" opacity=".3"/>
+          <circle class="smoke3" cx="346" cy="3" r="2.5" fill="white" opacity=".25"/>
+
+          <!-- === WHEELS === -->
+          <!-- Rear trailer axle 1 -->
+          <g class="wheel-anim" style="transform-origin: 48px 70px">
+            <circle cx="48" cy="70" r="12" fill="#1e293b"/>
+            <circle cx="48" cy="70" r="8"  fill="#334155"/>
+            <circle cx="48" cy="70" r="4"  fill="#64748b"/>
+            <line x1="48" y1="62" x2="48" y2="78" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="40" y1="70" x2="56" y2="70" stroke="#94a3b8" stroke-width="1.5"/>
+          </g>
+          <!-- Rear trailer axle 2 -->
+          <g class="wheel-anim" style="transform-origin: 78px 70px">
+            <circle cx="78" cy="70" r="12" fill="#1e293b"/>
+            <circle cx="78" cy="70" r="8"  fill="#334155"/>
+            <circle cx="78" cy="70" r="4"  fill="#64748b"/>
+            <line x1="78" y1="62" x2="78" y2="78" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="70" y1="70" x2="86" y2="70" stroke="#94a3b8" stroke-width="1.5"/>
+          </g>
+          <!-- Middle trailer axle -->
+          <g class="wheel-anim" style="transform-origin: 158px 70px">
+            <circle cx="158" cy="70" r="12" fill="#1e293b"/>
+            <circle cx="158" cy="70" r="8"  fill="#334155"/>
+            <circle cx="158" cy="70" r="4"  fill="#64748b"/>
+            <line x1="158" y1="62" x2="158" y2="78" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="150" y1="70" x2="166" y2="70" stroke="#94a3b8" stroke-width="1.5"/>
+          </g>
+          <!-- Cab front axle -->
+          <g class="wheel-anim" style="transform-origin: 280px 70px">
+            <circle cx="280" cy="70" r="12" fill="#1e293b"/>
+            <circle cx="280" cy="70" r="8"  fill="#334155"/>
+            <circle cx="280" cy="70" r="4"  fill="#64748b"/>
+            <line x1="280" y1="62" x2="280" y2="78" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="272" y1="70" x2="288" y2="70" stroke="#94a3b8" stroke-width="1.5"/>
+          </g>
+          <!-- Cab rear axle -->
+          <g class="wheel-anim" style="transform-origin: 334px 70px">
+            <circle cx="334" cy="70" r="12" fill="#1e293b"/>
+            <circle cx="334" cy="70" r="8"  fill="#334155"/>
+            <circle cx="334" cy="70" r="4"  fill="#64748b"/>
+            <line x1="334" y1="62" x2="334" y2="78" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="326" y1="70" x2="342" y2="70" stroke="#94a3b8" stroke-width="1.5"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <a href="#servicios" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 hover:text-white/70 transition-colors cursor-pointer z-20" aria-label="Ir a servicios">
+    <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </a>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     SERVICIOS
+════════════════════════════════════════════════════════ -->
+<section id="servicios" class="py-24 px-4 md:px-8 bg-slate-50">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="inline-block text-gold-600 font-semibold text-sm uppercase tracking-widest mb-3">Lo que hacemos</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 mb-4">Servicios especializados</h2>
+      <p class="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
+        Soluciones de transporte a medida para cada tipo de carga, con la exigencia de calidad que distingue a Valtrau desde 1989.
+      </p>
+    </div>
+
+    <!-- Granel — full-width feature card -->
+    <div id="svc-granel" class="svc-card relative overflow-hidden rounded-3xl mb-6 cursor-default group min-h-80">
+      <img src="imgTransporteMercancias.jpg" alt="Camión Valtrau descargando mercancías a granel en el Puerto de Valencia" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+      <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(15,30,74,.90) 0%, rgba(15,30,74,.65) 50%, rgba(15,30,74,.2) 100%);"></div>
+      <div class="relative z-10 p-10 flex flex-col justify-end h-full min-h-80">
+        <div class="inline-flex items-center gap-2 bg-gold-500 text-white text-xs font-bold px-3 py-1 rounded-full w-fit mb-4">
+          ESPECIALIDAD PRINCIPAL
+        </div>
+        <h3 class="text-white text-3xl font-bold font-heading mb-3">Transporte de Graneles</h3>
+        <p class="text-white/75 text-base leading-relaxed max-w-xl mb-6">
+          Nuestra especialidad. Flota propia de <strong class="text-white">65 camiones basculantes</strong> para operaciones de carga y descarga de buques a granel en los puertos de Valencia y Sagunto. Destacamos por la alta capacidad de respuesta y exigencia máxima en calidad y limpieza para evitar pérdidas por derrame.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <span class="bg-white/15 border border-white/20 text-white text-sm px-4 py-1.5 rounded-full">Puerto de Valencia</span>
+          <span class="bg-white/15 border border-white/20 text-white text-sm px-4 py-1.5 rounded-full">Puerto de Sagunto</span>
+          <span class="bg-white/15 border border-white/20 text-white text-sm px-4 py-1.5 rounded-full">Ámbito nacional</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-column grid for remaining services -->
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Paletizadas -->
+      <div id="svc-palets" class="svc-card relative overflow-hidden rounded-2xl cursor-default group min-h-72">
+        <img src="imgPalets.webp" alt="Transporte de mercancías paletizadas" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15,30,74,.92) 0%, rgba(15,30,74,.6) 60%, rgba(15,30,74,.15) 100%);"></div>
+        <div class="relative z-10 p-7 flex flex-col justify-end h-full min-h-72">
+          <h3 class="text-white text-xl font-bold font-heading mb-2">Mercancías Paletizadas</h3>
+          <p class="text-white/70 text-sm leading-relaxed mb-4">
+            18 vehículos con plataforma disponibles en configuraciones 20', 40' y 45' para máxima versatilidad.
+          </p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="bg-gold-500/20 border border-gold-400/40 text-gold-300 text-xs px-3 py-1 rounded-full">20' · 40' · 45'</span>
+            <span class="bg-white/10 border border-white/20 text-white/80 text-xs px-3 py-1 rounded-full">18 vehículos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedores -->
+      <div id="svc-contenedor" class="svc-card relative overflow-hidden rounded-2xl cursor-default group min-h-72">
+        <img src="imgContenedor.png" alt="Transporte de contenedores marítimos" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" />
+        <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15,30,74,.92) 0%, rgba(15,30,74,.55) 55%, rgba(15,30,74,.1) 100%);"></div>
+        <div class="relative z-10 p-7 flex flex-col justify-end h-full min-h-72">
+          <h3 class="text-white text-xl font-bold font-heading mb-2">Transporte de Contenedores</h3>
+          <p class="text-white/70 text-sm leading-relaxed mb-4">
+            Nacional e internacional con flota propia y red de colaboradores. Servicio estándar y urgente disponible.
+          </p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="bg-white/10 border border-white/20 text-white/80 text-xs px-3 py-1 rounded-full">Nacional</span>
+            <span class="bg-white/10 border border-white/20 text-white/80 text-xs px-3 py-1 rounded-full">Internacional</span>
+            <span class="bg-gold-500/20 border border-gold-400/40 text-gold-300 text-xs px-3 py-1 rounded-full">Urgente</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADR -->
+      <div id="svc-adr" class="svc-card relative overflow-hidden rounded-2xl cursor-default group min-h-72">
+        <img src="imgTransportePeligroso.jpg" alt="Transporte de mercancías peligrosas ADR" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(100,15,15,.92) 0%, rgba(80,15,15,.65) 55%, rgba(15,30,74,.15) 100%);"></div>
+        <div class="relative z-10 p-7 flex flex-col justify-end h-full min-h-72">
+          <div class="inline-flex items-center gap-1.5 bg-red-600/80 text-white text-xs font-bold px-3 py-1 rounded-full w-fit mb-3">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            ADR CERTIFICADO
+          </div>
+          <h3 class="text-white text-xl font-bold font-heading mb-2">Mercancías Peligrosas</h3>
+          <p class="text-white/70 text-sm leading-relaxed mb-4">
+            Personal y vehículos certificados ADR. Seguridad y experiencia en el transporte de sustancias que requieren manejo especializado.
+          </p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="bg-red-900/40 border border-red-400/30 text-red-200 text-xs px-3 py-1 rounded-full">Cert. ADR</span>
+            <span class="bg-white/10 border border-white/20 text-white/80 text-xs px-3 py-1 rounded-full">Alta seguridad</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     EMPRESA
+════════════════════════════════════════════════════════ -->
+<section id="empresa" class="py-24 px-4 md:px-8 bg-white">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Header centrado -->
+    <div class="text-center mb-14">
+      <span class="inline-block text-gold-600 font-semibold text-sm uppercase tracking-widest mb-3">Quiénes somos</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4 font-heading leading-tight">
+        Empresa Transporte Valencia — Nacional
+      </h2>
+      <p class="text-slate-500 text-lg max-w-3xl mx-auto leading-relaxed">
+        Más de 30 años de experiencia en el Puerto de Valencia avalan la trayectoria de Valtrau, destacando por la calidad y eficacia en el servicio del transporte.
+      </p>
+    </div>
+
+    <!-- Imagen + texto intro en 2 columnas -->
+    <div class="grid lg:grid-cols-2 gap-12 items-center mb-14">
+
+      <!-- Left: texto -->
+      <div class="space-y-5 text-slate-600 leading-relaxed text-base">
+        <p>
+          Constituida como <strong class="text-navy-800">Cooperativa</strong>, Valtrau es una empresa dedicada al transporte por carretera de mercancías a granel como principal actividad y especialmente en el sector portuario.
+        </p>
+        <p>
+          Disponemos de una <strong class="text-navy-800">flota propia de 65 camiones basculantes</strong> lo que supone una garantía de seguridad en operaciones de carga y descarga de buques a granel.
+        </p>
+        <p>
+          Nuestro ámbito de trabajo comprende los hinterland de los <strong class="text-navy-800">puertos de Valencia y Sagunto</strong> fundamentalmente. También damos servicio de transporte a nivel nacional.
+        </p>
+        <!-- Stats row -->
+        <div class="grid grid-cols-3 gap-4 pt-2">
+          <div class="bg-navy-900 rounded-2xl p-5 text-center text-white">
+            <div class="text-3xl font-bold text-gold-400 font-heading">65</div>
+            <div class="text-white/60 text-xs mt-1">Camiones propios</div>
+          </div>
+          <div class="bg-navy-900 rounded-2xl p-5 text-center text-white">
+            <div class="text-3xl font-bold text-gold-400 font-heading">30+</div>
+            <div class="text-white/60 text-xs mt-1">Años en activo</div>
+          </div>
+          <div class="bg-navy-900 rounded-2xl p-5 text-center text-white">
+            <div class="text-3xl font-bold text-gold-400 font-heading">57</div>
+            <div class="text-white/60 text-xs mt-1">Socios fundadores</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: imagen -->
+      <div class="space-y-4">
+        <div class="overflow-hidden rounded-2xl">
+          <img src="imgTransporteMercancias.jpg" alt="Flota Valtrau en el Puerto de Valencia" class="w-full h-72 object-cover" />
+        </div>
+        <div class="bg-gold-500 rounded-2xl p-5 text-white">
+          <div class="font-bold font-heading text-base mb-1">Sede social</div>
+          <p class="text-white/85 text-sm leading-relaxed">
+            Calle Juan Verdeguer, 48 · 46024 Valencia — A tan solo 800 metros del Puerto de Valencia
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Historia — centrada a todo el ancho -->
+    <div class="max-w-3xl mx-auto mb-10">
+      <div class="p-7 bg-navy-50 border-l-4 border-navy-700 rounded-r-2xl text-center">
+        <h4 class="text-navy-800 font-bold font-heading mb-3 text-lg">Nuestra historia</h4>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          En <strong>1989</strong> un grupo de <strong>57 transportistas autónomos</strong> se asociaron en Cooperativa fundando <em>Valenciana de Transportes Autónomos (VALTRAU)</em> para un mejor y unificado servicio en el Puerto de Valencia. Nuestra sede social situada en la calle Juan Verdeguer, 48 está a escasos <strong>800 metros</strong> de la puerta principal del Puerto de Valencia.
+        </p>
+      </div>
+    </div>
+
+    <!-- Values grid — centrado a todo el ancho -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+      <div class="flex flex-col items-center text-center gap-3 p-5 bg-slate-50 rounded-xl border border-slate-100">
+        <div class="w-10 h-10 bg-gold-500/15 rounded-lg flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-gold-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <div>
+          <h5 class="font-semibold text-navy-900 text-sm mb-0.5">Calidad garantizada</h5>
+          <p class="text-slate-500 text-xs leading-relaxed">Exigencia máxima en cada operación de transporte.</p>
+        </div>
+      </div>
+      <div class="flex flex-col items-center text-center gap-3 p-5 bg-slate-50 rounded-xl border border-slate-100">
+        <div class="w-10 h-10 bg-navy-700/10 rounded-lg flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div>
+          <h5 class="font-semibold text-navy-900 text-sm mb-0.5">Alta respuesta</h5>
+          <p class="text-slate-500 text-xs leading-relaxed">Capacidad operativa para servicios urgentes y planificados.</p>
+        </div>
+      </div>
+      <div class="flex flex-col items-center text-center gap-3 p-5 bg-slate-50 rounded-xl border border-slate-100">
+        <div class="w-10 h-10 bg-navy-700/10 rounded-lg flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div>
+          <h5 class="font-semibold text-navy-900 text-sm mb-0.5">Modelo cooperativo</h5>
+          <p class="text-slate-500 text-xs leading-relaxed">Compromiso colectivo con clientes y trabajadores.</p>
+        </div>
+      </div>
+      <div class="flex flex-col items-center text-center gap-3 p-5 bg-slate-50 rounded-xl border border-slate-100">
+        <div class="w-10 h-10 bg-navy-700/10 rounded-lg flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+        </div>
+        <div>
+          <h5 class="font-semibold text-navy-900 text-sm mb-0.5">Posición estratégica</h5>
+          <p class="text-slate-500 text-xs leading-relaxed">A 800 m de la puerta principal del Puerto de Valencia.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     CONTACTO
+════════════════════════════════════════════════════════ -->
+<section id="contacto" class="py-24 px-4 md:px-8 bg-slate-50">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-16">
+      <span class="inline-block text-gold-600 font-semibold text-sm uppercase tracking-widest mb-3">Contactar</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-4 font-heading">Estamos aquí para ayudarte</h2>
+      <p class="text-slate-500 text-lg max-w-xl mx-auto leading-relaxed">
+        Elige cómo quieres ponerte en contacto con Valtrau.
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex justify-center mb-10">
+      <div class="inline-flex bg-white border border-slate-200 rounded-2xl p-1.5 gap-1 shadow-sm">
+        <button onclick="showTab('contacto-tab')" id="btn-contacto"
+          class="tab-btn active px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer bg-navy-700 text-white">
+          Contacto
+        </button>
+        <button onclick="showTab('bolsa-tab')" id="btn-bolsa"
+          class="tab-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer text-slate-600 hover:bg-slate-50">
+          Bolsa de Trabajo
+        </button>
+        <button onclick="showTab('mejorar-tab')" id="btn-mejorar"
+          class="tab-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer text-slate-600 hover:bg-slate-50">
+          Ayúdanos a Mejorar
+        </button>
+      </div>
+    </div>
+
+    <!-- ── TAB: CONTACTO ── -->
+    <div id="contacto-tab" class="tab-content">
+      <!-- Anchor for navbar link -->
+      <a id="contacto" class="invisible absolute -top-24"></a>
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-2xl font-bold text-navy-900 font-heading mb-6">Información de contacto</h3>
+          <div class="space-y-5">
+            <a href="tel:963305884" class="flex items-center gap-4 group cursor-pointer">
+              <div class="w-12 h-12 bg-navy-50 border border-navy-100 group-hover:bg-navy-100 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-200">
+                <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Teléfono</div>
+                <div class="text-navy-900 font-semibold group-hover:text-navy-600 transition-colors">96 330 58 84</div>
+              </div>
+            </a>
+            <a href="mailto:transportes@valtrau.com" class="flex items-center gap-4 group cursor-pointer">
+              <div class="w-12 h-12 bg-navy-50 border border-navy-100 group-hover:bg-navy-100 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-200">
+                <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Email</div>
+                <div class="text-navy-900 font-semibold group-hover:text-navy-600 transition-colors">transportes@valtrau.com</div>
+              </div>
+            </a>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-navy-50 border border-navy-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Dirección</div>
+                <div class="text-navy-900 font-semibold">C/ Joan Verdeguer, 48</div>
+                <div class="text-slate-500 text-sm">46024 Valencia, España</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+          <h3 class="text-navy-900 font-bold text-xl font-heading mb-6">Solicitar información</h3>
+          <form id="form-contacto" novalidate class="space-y-5" onsubmit="handleForm(event,'success-contacto')">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="nombre" class="block text-sm font-medium text-slate-700 mb-1.5">Nombre *</label>
+                <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre" autocomplete="name"
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500 transition-shadow" />
+              </div>
+              <div>
+                <label for="empresa-c" class="block text-sm font-medium text-slate-700 mb-1.5">Empresa</label>
+                <input id="empresa-c" name="empresa" type="text" placeholder="Tu empresa" autocomplete="organization"
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500 transition-shadow" />
+              </div>
+            </div>
+            <div>
+              <label for="email-c" class="block text-sm font-medium text-slate-700 mb-1.5">Email *</label>
+              <input id="email-c" name="email" type="email" required placeholder="tu@empresa.com" autocomplete="email"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500 transition-shadow" />
+            </div>
+            <div>
+              <label for="servicio-c" class="block text-sm font-medium text-slate-700 mb-1.5">Tipo de servicio</label>
+              <select id="servicio-c" name="servicio"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 cursor-pointer transition-shadow">
+                <option value="">Selecciona un servicio</option>
+                <option value="granel">Transporte de graneles</option>
+                <option value="paletizado">Mercancías paletizadas</option>
+                <option value="contenedor">Contenedores</option>
+                <option value="adr">ADR – Mercancías peligrosas</option>
+              </select>
+            </div>
+            <div>
+              <label for="mensaje-c" class="block text-sm font-medium text-slate-700 mb-1.5">Mensaje *</label>
+              <textarea id="mensaje-c" name="mensaje" required rows="4" placeholder="Descríbenos tu necesidad..."
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500 resize-none transition-shadow"></textarea>
+            </div>
+            <button type="submit"
+              class="w-full bg-navy-700 hover:bg-navy-800 text-white font-semibold py-3.5 px-6 rounded-xl transition-colors duration-200 cursor-pointer text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 focus:ring-offset-2">
+              Enviar mensaje
+            </button>
+          </form>
+          <div id="success-contacto" class="hidden text-center py-8">
+            <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h4 class="text-navy-900 font-bold font-heading text-lg mb-2">Mensaje enviado</h4>
+            <p class="text-slate-500 text-sm">Nos pondremos en contacto contigo en breve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB: BOLSA DE TRABAJO ── -->
+    <div id="bolsa-tab" class="tab-content hidden">
+      <a id="bolsa" class="invisible absolute -top-24"></a>
+      <div class="max-w-2xl mx-auto">
+        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 bg-gold-500/15 rounded-2xl flex items-center justify-center">
+              <svg class="w-7 h-7 text-gold-600" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-navy-900 font-heading">Bolsa de Trabajo</h3>
+              <p class="text-slate-500 text-sm">Únete al equipo Valtrau</p>
+            </div>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-6">
+            En Valtrau siempre buscamos incorporar profesionales comprometidos con la excelencia en el transporte. Si estás interesado en formar parte de nuestra cooperativa, envíanos tu candidatura.
+          </p>
+          <form novalidate class="space-y-5" onsubmit="handleForm(event,'success-bolsa')">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="nombre-b" class="block text-sm font-medium text-slate-700 mb-1.5">Nombre completo *</label>
+                <input id="nombre-b" type="text" required placeholder="Tu nombre completo" autocomplete="name"
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500 transition-shadow" />
+              </div>
+              <div>
+                <label for="tel-b" class="block text-sm font-medium text-slate-700 mb-1.5">Teléfono</label>
+                <input id="tel-b" type="tel" placeholder="Teléfono de contacto" autocomplete="tel"
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500 transition-shadow" />
+              </div>
+            </div>
+            <div>
+              <label for="email-b" class="block text-sm font-medium text-slate-700 mb-1.5">Email *</label>
+              <input id="email-b" type="email" required placeholder="tu@email.com" autocomplete="email"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500 transition-shadow" />
+            </div>
+            <div>
+              <label for="puesto-b" class="block text-sm font-medium text-slate-700 mb-1.5">Puesto de interés</label>
+              <select id="puesto-b"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 cursor-pointer transition-shadow">
+                <option value="">Selecciona un puesto</option>
+                <option value="conductor-granel">Conductor camión basculante (graneles)</option>
+                <option value="conductor-plataforma">Conductor plataforma (paletizados)</option>
+                <option value="conductor-adr">Conductor ADR</option>
+                <option value="logistica">Logística y coordinación</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div>
+              <label for="carta-b" class="block text-sm font-medium text-slate-700 mb-1.5">Carta de presentación</label>
+              <textarea id="carta-b" rows="4" placeholder="Cuéntanos sobre tu experiencia y por qué quieres unirte a Valtrau..."
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500 resize-none transition-shadow"></textarea>
+            </div>
+            <button type="submit"
+              class="w-full bg-gold-500 hover:bg-gold-600 text-white font-semibold py-3.5 px-6 rounded-xl transition-colors duration-200 cursor-pointer text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2">
+              Enviar candidatura
+            </button>
+          </form>
+          <div id="success-bolsa" class="hidden text-center py-8">
+            <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h4 class="text-navy-900 font-bold font-heading text-lg mb-2">Candidatura enviada</h4>
+            <p class="text-slate-500 text-sm">Revisaremos tu perfil y contactaremos contigo si hay una oportunidad adecuada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB: AYÚDANOS A MEJORAR ── -->
+    <div id="mejorar-tab" class="tab-content hidden">
+      <a id="mejorar" class="invisible absolute -top-24"></a>
+      <div class="max-w-2xl mx-auto">
+        <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 bg-navy-50 rounded-2xl flex items-center justify-center">
+              <svg class="w-7 h-7 text-navy-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-navy-900 font-heading">Ayúdanos a Mejorar</h3>
+              <p class="text-slate-500 text-sm">Tu opinión es muy valiosa para nosotros</p>
+            </div>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-6">
+            En Valtrau trabajamos continuamente para mejorar nuestro servicio. Si has trabajado con nosotros o tienes alguna sugerencia, nos encantaría escucharte.
+          </p>
+          <!-- Rating -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-slate-700 mb-3">Valora nuestro servicio</label>
+            <div class="flex gap-2" id="stars-container" role="radiogroup" aria-label="Puntuación del servicio">
+              <button type="button" onclick="setRating(1)" class="star-btn w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center transition-all duration-150 hover:bg-gold-50 hover:border-gold-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-400" aria-label="1 estrella">
+                <svg class="w-5 h-5 text-slate-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </button>
+              <button type="button" onclick="setRating(2)" class="star-btn w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center transition-all duration-150 hover:bg-gold-50 hover:border-gold-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-400" aria-label="2 estrellas">
+                <svg class="w-5 h-5 text-slate-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </button>
+              <button type="button" onclick="setRating(3)" class="star-btn w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center transition-all duration-150 hover:bg-gold-50 hover:border-gold-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-400" aria-label="3 estrellas">
+                <svg class="w-5 h-5 text-slate-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.461a1 1 0 00.951-.69l1.07-3.292z M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </button>
+              <button type="button" onclick="setRating(4)" class="star-btn w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center transition-all duration-150 hover:bg-gold-50 hover:border-gold-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-400" aria-label="4 estrellas">
+                <svg class="w-5 h-5 text-slate-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </button>
+              <button type="button" onclick="setRating(5)" class="star-btn w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center transition-all duration-150 hover:bg-gold-50 hover:border-gold-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-400" aria-label="5 estrellas">
+                <svg class="w-5 h-5 text-slate-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </button>
+            </div>
+          </div>
+          <form novalidate class="space-y-5" onsubmit="handleForm(event,'success-mejorar')">
+            <div>
+              <label for="nombre-m" class="block text-sm font-medium text-slate-700 mb-1.5">Nombre (opcional)</label>
+              <input id="nombre-m" type="text" placeholder="Tu nombre"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500 transition-shadow" />
+            </div>
+            <div>
+              <label for="sugerencia-m" class="block text-sm font-medium text-slate-700 mb-1.5">Tu sugerencia o comentario *</label>
+              <textarea id="sugerencia-m" required rows="5" placeholder="¿Cómo podemos mejorar nuestro servicio?"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500 resize-none transition-shadow"></textarea>
+            </div>
+            <button type="submit"
+              class="w-full bg-navy-700 hover:bg-navy-800 text-white font-semibold py-3.5 px-6 rounded-xl transition-colors duration-200 cursor-pointer text-sm focus:outline-none focus:ring-2 focus:ring-navy-500 focus:ring-offset-2">
+              Enviar valoración
+            </button>
+          </form>
+          <div id="success-mejorar" class="hidden text-center py-8">
+            <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h4 class="text-navy-900 font-bold font-heading text-lg mb-2">¡Gracias por tu valoración!</h4>
+            <p class="text-slate-500 text-sm">Tu opinión nos ayuda a mejorar cada día.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer class="bg-navy-900 text-white/60 py-14 px-4 md:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-10 mb-10">
+      <div>
+        <img src="logoValtrau.png" alt="Valtrau Cooperativa Valenciana" class="h-10 w-auto mb-4 brightness-0 invert opacity-75" />
+        <p class="text-sm leading-relaxed max-w-xs">
+          Cooperativa valenciana de transportes. Especialistas en granel, contenedores, ADR y mercancías paletizadas desde el Puerto de Valencia.
+        </p>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold text-sm mb-4 font-heading">Servicios</h5>
+        <ul class="space-y-2 text-sm">
+          <li><a href="graneles.html"     class="hover:text-white transition-colors duration-200 cursor-pointer">Transporte de graneles</a></li>
+          <li><a href="paletizadas.html"     class="hover:text-white transition-colors duration-200 cursor-pointer">Mercancías paletizadas</a></li>
+          <li><a href="contenedores.html" class="hover:text-white transition-colors duration-200 cursor-pointer">Contenedores</a></li>
+          <li><a href="adr.html"        class="hover:text-white transition-colors duration-200 cursor-pointer">ADR – Mercancías peligrosas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold text-sm mb-4 font-heading">Contacto</h5>
+        <ul class="space-y-2 text-sm">
+          <li><a href="tel:963305884" class="hover:text-white transition-colors cursor-pointer flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
+            96 330 58 84
+          </a></li>
+          <li><a href="mailto:transportes@valtrau.com" class="hover:text-white transition-colors cursor-pointer flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            transportes@valtrau.com
+          </a></li>
+          <li class="flex items-start gap-2">
+            <svg class="w-3.5 h-3.5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            C/ Joan Verdeguer, 48<br/>46024 Valencia
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <span>&copy; 2024 Valtrau Cooperativa Valenciana. Todos los derechos reservados.</span>
+      <div class="flex gap-5">
+        <a href="#" class="hover:text-white transition-colors cursor-pointer">Aviso legal</a>
+        <a href="#" class="hover:text-white transition-colors cursor-pointer">Política de privacidad</a>
+        <a href="#" class="hover:text-white transition-colors cursor-pointer">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════ -->
+<script>
+  // ── Navbar scroll ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 60;
+    navbar.classList.toggle('scrolled', scrolled);
+    // When scrolled, logo should show in color; when at top, logo white
+    const logo = navbar.querySelector('.logo-white');
+    logo.style.filter = scrolled ? 'none' : 'brightness(0) invert(1)';
+    // Nav links color
+    navbar.querySelectorAll('.nav-link').forEach(l => {
+      l.style.color = scrolled ? '#1e293b' : '';
+    });
+    // CTA btn stays visible
+  }, { passive: true });
+
+  // ── Mobile menu ──
+  const menuBtn   = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen  = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+  let menuOpen = false;
+  menuBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    iconOpen.classList.toggle('hidden', menuOpen);
+    iconClose.classList.toggle('hidden', !menuOpen);
+    menuBtn.setAttribute('aria-expanded', menuOpen);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', false);
+    });
+  });
+
+  // ── Smooth scroll with offset ──
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      const id = anchor.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 90, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── Contact tabs ──
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+    // Button styles
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('bg-navy-700','text-white');
+      b.classList.add('text-slate-600');
+    });
+    const map = { 'contacto-tab': 'btn-contacto', 'bolsa-tab': 'btn-bolsa', 'mejorar-tab': 'btn-mejorar' };
+    const btn = document.getElementById(map[id]);
+    btn.classList.add('bg-navy-700','text-white');
+    btn.classList.remove('text-slate-600');
+  }
+
+  // ── Form submit ──
+  function handleForm(e, successId) {
+    e.preventDefault();
+    e.target.classList.add('hidden');
+    document.getElementById(successId).classList.remove('hidden');
+  }
+
+  // ── Star rating ──
+  let currentRating = 0;
+  function setRating(n) {
+    currentRating = n;
+    const stars = document.querySelectorAll('.star-btn svg');
+    stars.forEach((s, i) => {
+      s.style.color = i < n ? '#E8A020' : '';
+      s.classList.toggle('text-gold-500', i < n);
+      s.classList.toggle('text-slate-300', i >= n);
+    });
+    const btns = document.querySelectorAll('.star-btn');
+    btns.forEach((b, i) => {
+      b.classList.toggle('bg-gold-50', i < n);
+      b.classList.toggle('border-gold-300', i < n);
+      b.classList.toggle('border-slate-200', i >= n);
+    });
+  }
+
+  // ── Dropdown anchor nav: handle "Contactar" clicking a sub-tab ──
+  document.querySelectorAll('[href="#bolsa"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      showTab('bolsa-tab');
+      const section = document.getElementById('contacto');
+      if (section) window.scrollTo({ top: section.offsetTop - 90, behavior: 'smooth' });
+    });
+  });
+  document.querySelectorAll('[href="#mejorar"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      showTab('mejorar-tab');
+      const section = document.getElementById('contacto');
+      if (section) window.scrollTo({ top: section.offsetTop - 90, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>

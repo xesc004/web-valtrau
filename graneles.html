@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transporte de Graneles – Valtrau</title>
+  <meta name="description" content="Especialistas en transporte de mercancías a granel a nivel nacional. Flota propia de 65 camiones basculantes en el Puerto de Valencia." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { heading: ['Poppins','sans-serif'], body: ['Open Sans','sans-serif'] },
+        colors: {
+          navy: { 50:'#f0f4ff',100:'#dce6fb',600:'#1e49c0',700:'#1B3479',800:'#162c65',900:'#0F1E4A' },
+          gold: { 400:'#f9c442', 500:'#E8A020', 600:'#c47f10' }
+        }
+      }}
+    }
+  </script>
+  <style>
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Open Sans',sans-serif;color:#1e293b}h1,h2,h3,h4{font-family:'Poppins',sans-serif}
+    #navbar{transition:background .3s,box-shadow .3s,padding .3s}
+    #navbar.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,.10)}
+    #navbar.scrolled .nav-link{color:#1e293b}#navbar.scrolled .nav-link:hover{color:#1B3479}
+    .dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:220px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.12);padding:6px;z-index:100}
+    .dropdown:hover .dropdown-menu,.dropdown:focus-within .dropdown-menu{display:block}
+    .dropdown-menu a{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:10px;font-size:.82rem;font-weight:500;color:#334155;transition:background .15s,color .15s;text-decoration:none}
+    .dropdown-menu a:hover{background:#f0f4ff;color:#1B3479}
+    .dropdown-menu a.active{background:#f0f4ff;color:#1B3479;font-weight:600}
+    .dropdown-chevron{transition:transform .2s}.dropdown:hover .dropdown-chevron{transform:rotate(180deg)}
+    #mobile-menu{max-height:0;overflow:hidden;opacity:0;transition:max-height .3s,opacity .3s}
+    #mobile-menu.open{max-height:500px;opacity:1}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .fade-up{animation:fadeUp .6s ease both}
+    .delay-1{animation-delay:.1s}.delay-2{animation-delay:.25s}.delay-3{animation-delay:.4s}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-3 px-4 md:px-8 bg-transparent">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="index.html" aria-label="Valtrau inicio" class="flex-shrink-0 cursor-pointer">
+      <img src="logoValtrau.png" alt="Valtrau" class="logo-img h-11 w-auto" style="filter:brightness(0) invert(1)" />
+    </a>
+    <ul class="hidden md:flex items-center gap-1 text-sm font-medium text-white">
+      <li><a href="index.html" class="nav-link px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">Inicio</a></li>
+      <li class="dropdown relative">
+        <a href="#" class="nav-link flex items-center gap-1 px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">
+          Servicios <svg class="dropdown-chevron w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="graneles.html" class="active">
+            <svg class="w-4 h-4 text-gold-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            Transporte de graneles
+          </a>
+          <a href="paletizadas.html">
+            <svg class="w-4 h-4 text-gold-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+            Mercancías paletizadas
+          </a>
+          <a href="contenedores.html">
+            <svg class="w-4 h-4 text-gold-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            Contenedores
+          </a>
+          <a href="adr.html">
+            <svg class="w-4 h-4 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            ADR – Mercancías peligrosas
+          </a>
+        </div>
+      </li>
+      <li><a href="index.html#empresa" class="nav-link px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">Empresa</a></li>
+      <li class="dropdown relative">
+        <a href="index.html#contacto" class="nav-link flex items-center gap-1 px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">
+          Contactar <svg class="dropdown-chevron w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+        <div class="dropdown-menu">
+          <a href="index.html#contacto"><svg class="w-4 h-4 text-navy-700 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>Contacto</a>
+          <a href="index.html#bolsa"><svg class="w-4 h-4 text-navy-700 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>Bolsa de Trabajo</a>
+          <a href="index.html#mejorar"><svg class="w-4 h-4 text-navy-700 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>Ayúdanos a Mejorar</a>
+        </div>
+      </li>
+      <li class="ml-2">
+        <a href="index.html#contacto" class="inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-white font-semibold px-5 py-2.5 rounded-full transition-colors cursor-pointer shadow-lg text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
+          Solicitar servicio
+        </a>
+      </li>
+    </ul>
+    <button id="menu-btn" class="md:hidden p-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gold-400" aria-label="Abrir menú">
+      <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="md:hidden mt-2 rounded-2xl bg-white shadow-xl border border-slate-100">
+    <ul class="flex flex-col py-3 px-3 text-slate-700 font-medium text-sm gap-0.5">
+      <li><a href="index.html" class="block py-2.5 px-3 rounded-xl hover:bg-slate-50 cursor-pointer">Inicio</a></li>
+      <li><a href="graneles.html"     class="block py-2 px-3 rounded-xl bg-navy-50 text-navy-700 font-semibold cursor-pointer">→ Transporte de graneles</a></li>
+      <li><a href="paletizadas.html"  class="block py-2 px-3 rounded-xl hover:bg-slate-50 cursor-pointer pl-5">→ Mercancías paletizadas</a></li>
+      <li><a href="contenedores.html" class="block py-2 px-3 rounded-xl hover:bg-slate-50 cursor-pointer pl-5">→ Contenedores</a></li>
+      <li><a href="adr.html"          class="block py-2 px-3 rounded-xl hover:bg-slate-50 cursor-pointer pl-5">→ ADR – Mercancías peligrosas</a></li>
+      <li><a href="index.html#empresa"  class="block py-2.5 px-3 rounded-xl hover:bg-slate-50 cursor-pointer">Empresa</a></li>
+      <li><a href="index.html#contacto" class="block py-2.5 px-3 rounded-xl hover:bg-slate-50 cursor-pointer">Contactar</a></li>
+      <li class="pt-2"><a href="index.html#contacto" class="block text-center bg-gold-500 hover:bg-gold-600 text-white font-semibold py-2.5 px-3 rounded-xl transition-colors cursor-pointer">Solicitar servicio</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative min-h-[70vh] flex flex-col justify-end overflow-hidden">
+  <img src="imgTransporteMercancias.jpg" alt="Camión Valtrau descargando mercancías a granel en el Puerto de Valencia" class="absolute inset-0 w-full h-full object-cover" />
+  <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(15,30,74,.95) 0%, rgba(15,30,74,.7) 45%, rgba(15,30,74,.25) 100%)"></div>
+  <div class="relative z-10 max-w-7xl mx-auto w-full px-4 md:px-8 pb-16 pt-40">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-white/50 text-sm mb-6" aria-label="Breadcrumb">
+      <a href="index.html" class="hover:text-white transition-colors cursor-pointer">Inicio</a>
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      <a href="index.html#servicios" class="hover:text-white transition-colors cursor-pointer">Servicios</a>
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      <span class="text-white/80">Transporte de graneles</span>
+    </nav>
+    <div class="inline-flex items-center gap-2 bg-gold-500 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-4">
+      ESPECIALIDAD PRINCIPAL
+    </div>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 fade-up">
+      Transporte de<br /><span class="text-gold-400">Mercancías a Granel</span>
+    </h1>
+    <p class="text-white/75 text-xl max-w-2xl leading-relaxed fade-up delay-1">
+      Especialistas en transporte de graneles a nivel nacional. Flota propia de 65 camiones basculantes para operaciones portuarias de máxima exigencia.
+    </p>
+  </div>
+</section>
+
+<!-- INTRO STATS BAR -->
+<div class="bg-navy-900 py-6 px-4 md:px-8">
+  <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div>
+      <div class="text-3xl font-bold text-gold-400 font-heading">65</div>
+      <div class="text-white/60 text-sm mt-1">Camiones basculantes</div>
+    </div>
+    <div>
+      <div class="text-3xl font-bold text-gold-400 font-heading">30+</div>
+      <div class="text-white/60 text-sm mt-1">Años de experiencia</div>
+    </div>
+    <div>
+      <div class="text-3xl font-bold text-gold-400 font-heading">2</div>
+      <div class="text-white/60 text-sm mt-1">Puertos: Valencia y Sagunto</div>
+    </div>
+    <div>
+      <div class="text-3xl font-bold text-gold-400 font-heading">100%</div>
+      <div class="text-white/60 text-sm mt-1">Flota propia</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="py-20 px-4 md:px-8 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-3 gap-12">
+
+      <!-- Left: main text -->
+      <div class="lg:col-span-2 space-y-10">
+
+        <div class="fade-up">
+          <span class="inline-block text-gold-600 font-semibold text-sm uppercase tracking-widest mb-3">Nuestra especialidad</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-navy-900 mb-6 font-heading">Transporte de mercancías a granel — Especialistas nacionales</h2>
+          <div class="space-y-4 text-slate-600 leading-relaxed text-base">
+            <p>El transporte de mercancías a granel es <strong class="text-navy-800">nuestra especialidad</strong>. Toda la flota de Valtrau está equipada con sistema basculante, lo que nos permite ofrecer el nivel de servicio más exigente del sector portuario valenciano.</p>
+            <p>Ofrecemos un <strong class="text-navy-800">servicio personalizado a los clientes</strong> en operaciones de transporte que implican carga y descarga de buques, adaptándonos a los tiempos y necesidades específicos de cada operación.</p>
+            <p>Destacamos por la <strong class="text-navy-800">alta capacidad de respuesta</strong> y la máxima exigencia en la calidad y limpieza de los vehículos, evitando pérdidas o derrames de mercancías que puedan suponer costes adicionales para nuestros clientes.</p>
+          </div>
+        </div>
+
+        <!-- Feature cards -->
+        <div class="grid sm:grid-cols-3 gap-5 fade-up delay-1">
+          <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6">
+            <div class="w-10 h-10 bg-navy-700/10 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="font-bold text-navy-900 text-base font-heading mb-2">Sistema basculante</h3>
+            <p class="text-slate-500 text-sm leading-relaxed">Toda la flota equipada con sistema basculante de última generación para operaciones seguras y eficientes.</p>
+          </div>
+          <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6">
+            <div class="w-10 h-10 bg-navy-700/10 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-navy-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            </div>
+            <h3 class="font-bold text-navy-900 text-base font-heading mb-2">Servicio personalizado</h3>
+            <p class="text-slate-500 text-sm leading-relaxed">Adaptamos cada operación a los requerimientos específicos de carga y descarga de buques de nuestros clientes.</p>
+          </div>
+          <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6">
+            <div class="w-10 h-10 bg-gold-500/15 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-gold-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h3 class="font-bold text-navy-900 text-base font-heading mb-2">Calidad y limpieza</h3>
+            <p class="text-slate-500 text-sm leading-relaxed">Exigencia máxima en la limpieza de los vehículos para evitar pérdidas o derrames de mercancías.</p>
+          </div>
+        </div>
+
+        <!-- Scope section -->
+        <div class="bg-navy-50 border border-navy-100 rounded-2xl p-8 fade-up delay-2">
+          <h3 class="text-navy-900 font-bold text-xl font-heading mb-4">Ámbito de operaciones</h3>
+          <div class="space-y-3 text-slate-600 text-base leading-relaxed">
+            <p>Nuestro ámbito de trabajo comprende fundamentalmente los <strong class="text-navy-800">hinterland de los puertos de Valencia y Sagunto</strong>, dos de los enclaves portuarios más importantes del Mediterráneo español.</p>
+            <p>Además, ofrecemos <strong class="text-navy-800">servicio de transporte a nivel nacional</strong>, con la capacidad operativa para atender rutas de larga distancia con la misma exigencia que las operaciones portuarias locales.</p>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-3">
+            <span class="inline-flex items-center gap-1.5 bg-white border border-navy-200 text-navy-700 text-sm font-medium px-4 py-2 rounded-full">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+              Puerto de Valencia
+            </span>
+            <span class="inline-flex items-center gap-1.5 bg-white border border-navy-200 text-navy-700 text-sm font-medium px-4 py-2 rounded-full">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+              Puerto de Sagunto
+            </span>
+            <span class="inline-flex items-center gap-1.5 bg-white border border-navy-200 text-navy-700 text-sm font-medium px-4 py-2 rounded-full">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+              Ámbito nacional
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: sidebar -->
+      <div class="space-y-5">
+        <!-- CTA card -->
+        <div class="bg-navy-900 rounded-2xl p-7 text-white sticky top-28">
+          <h4 class="font-bold text-lg font-heading mb-2">¿Necesitas transporte de granel?</h4>
+          <p class="text-white/60 text-sm leading-relaxed mb-6">Cuéntanos tu operación y te damos respuesta en el menor tiempo posible.</p>
+          <a href="index.html#contacto" class="block text-center bg-gold-500 hover:bg-gold-600 text-white font-semibold py-3 px-5 rounded-xl transition-colors cursor-pointer text-sm mb-3">Solicitar presupuesto</a>
+          <a href="tel:963305884" class="flex items-center justify-center gap-2 border border-white/20 hover:bg-white/10 text-white font-medium py-3 px-5 rounded-xl transition-colors cursor-pointer text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
+            96 330 58 84
+          </a>
+          <div class="mt-6 pt-5 border-t border-white/10 space-y-2 text-sm text-white/50">
+            <div class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Alta capacidad de respuesta</div>
+            <div class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Flota propia de 65 vehículos</div>
+            <div class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Servicio nacional e internacional</div>
+          </div>
+        </div>
+        <!-- Other services -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5">
+          <h5 class="font-semibold text-navy-900 text-sm font-heading mb-3">Otros servicios</h5>
+          <div class="space-y-2">
+            <a href="paletizadas.html"  class="flex items-center gap-3 p-3 rounded-xl hover:bg-white border border-transparent hover:border-slate-200 transition-all cursor-pointer text-sm text-slate-600 hover:text-navy-700">
+              <svg class="w-4 h-4 text-gold-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+              Mercancías paletizadas
+            </a>
+            <a href="contenedores.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white border border-transparent hover:border-slate-200 transition-all cursor-pointer text-sm text-slate-600 hover:text-navy-700">
+              <svg class="w-4 h-4 text-gold-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              Contenedores
+            </a>
+            <a href="adr.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white border border-transparent hover:border-slate-200 transition-all cursor-pointer text-sm text-slate-600 hover:text-navy-700">
+              <svg class="w-4 h-4 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              ADR – Mercancías peligrosas
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-navy-900 text-white/60 py-12 px-4 md:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-10 mb-8">
+      <div><img src="logoValtrau.png" alt="Valtrau" class="h-10 w-auto mb-4 brightness-0 invert opacity-75" /><p class="text-sm leading-relaxed max-w-xs">Cooperativa valenciana de transportes. Especialistas en granel, contenedores, ADR y mercancías paletizadas desde el Puerto de Valencia.</p></div>
+      <div><h5 class="text-white font-semibold text-sm mb-4 font-heading">Servicios</h5><ul class="space-y-2 text-sm"><li><a href="graneles.html"     class="hover:text-white transition-colors cursor-pointer">Transporte de graneles</a></li><li><a href="paletizadas.html"  class="hover:text-white transition-colors cursor-pointer">Mercancías paletizadas</a></li><li><a href="contenedores.html" class="hover:text-white transition-colors cursor-pointer">Contenedores</a></li><li><a href="adr.html" class="hover:text-white transition-colors cursor-pointer">ADR – Mercancías peligrosas</a></li></ul></div>
+      <div><h5 class="text-white font-semibold text-sm mb-4 font-heading">Contacto</h5><ul class="space-y-2 text-sm"><li><a href="tel:963305884" class="hover:text-white transition-colors cursor-pointer">96 330 58 84</a></li><li><a href="mailto:transportes@valtrau.com" class="hover:text-white transition-colors cursor-pointer">transportes@valtrau.com</a></li><li>C/ Joan Verdeguer, 48 · 46024 Valencia</li></ul></div>
+    </div>
+    <div class="border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <span>&copy; 2024 Valtrau Cooperativa Valenciana. Todos los derechos reservados.</span>
+      <div class="flex gap-5"><a href="#" class="hover:text-white transition-colors cursor-pointer">Aviso legal</a><a href="#" class="hover:text-white transition-colors cursor-pointer">Política de privacidad</a><a href="#" class="hover:text-white transition-colors cursor-pointer">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{
+    const s=window.scrollY>60;
+    navbar.classList.toggle('scrolled',s);
+    navbar.querySelector('.logo-img').style.filter=s?'none':'brightness(0) invert(1)';
+    navbar.querySelectorAll('.nav-link').forEach(l=>l.style.color=s?'#1e293b':'');
+  },{passive:true});
+  const menuBtn=document.getElementById('menu-btn'),mob=document.getElementById('mobile-menu'),io=document.getElementById('icon-open'),ic=document.getElementById('icon-close');
+  let open=false;
+  menuBtn.addEventListener('click',()=>{open=!open;mob.classList.toggle('open',open);io.classList.toggle('hidden',open);ic.classList.toggle('hidden',!open)});
+</script>
+</body>
+</html>
